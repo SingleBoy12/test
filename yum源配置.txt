@@ -1,0 +1,23 @@
+①centos查看发行版
+  cat /etc/centos-release
+②查看操作系统位数
+  getconf LONG_BIT
+③查看内核uname -r
+  uname -r
+④配置本地yum
+   1.cd /etc/yum.repos.d/              yum源配置文件放置目录
+   2.mv CentOS-Base.repo CentOS-Base.repo.bak   先将网络yum源        配置文件更名（让其失效）
+   3.vim CentOS-Media.repo                编辑本地yum源文件
+如下：
+
+[c6-media]
+
+name=CentOS-$releasever - Media        本地yum源名称（可随意修改）
+
+baseurl=file:///mnt/sr0                光盘挂载目录/mnt/sr0
+
+gpgcheck=1                           
+
+enabled=1                              使用此yum源（等于0为不启用）
+
+gpgkey=file:///mnt/sr0/RPM-GPG-KEY-CentOS-6      本地yum源密钥
